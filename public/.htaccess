@@ -1,0 +1,25 @@
+<IfModule mod_rewrite.c>
+    # Activar el motor de reescritura
+    RewriteEngine On
+   
+    # Establecer directorio base (ajustar según instalación)
+    RewriteBase /test1/public/
+   
+    # Ocultar extensiones de archivos
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule ^(.*)$ $1.php [L]
+   
+    # Redirigir todas las solicitudes al index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+</IfModule>
+# Desactivar listado de directorios
+Options -Indexes
+# PHP settings
+<IfModule mod_php7.c>
+    php_flag display_errors On
+    php_flag log_errors On
+    php_value error_log ../logs/php_errors.log
+</IfModule>

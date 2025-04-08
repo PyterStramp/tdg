@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablas de Resultados de Aprendizaje</title>
+    <style>
+        /* Estilo para las tablas */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        /* Estilos de la tabla A */
+        #tableA {
+            background-color: #fff;
+            z-index: 10;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilos de la tabla B */
+        #tableB {
+            margin-top: 200px;
+            background-color: #fff;
+            z-index: 5;
+        }
+
+        /* Estilo de las filas */
+        .row {
+            height: 50px;
+        }
+
+        .row1 { background-color: orange; }
+        .row2 { background-color: lightyellow; }
+        .row3 { background-color: lightblue; }
+        .row4 { background-color: lightgreen; }
+        .row5 { background-color: lightpink; }
+        .row6 { background-color: lightgray; }
+
+        /* Estilos de los encabezados de la tabla B */
+        #tableB th {
+            background-color: green;
+            color: white;
+        }
+
+        /* Resaltado cuando seleccionas una celda */
+        .highlight {
+            background-color: lightgreen;
+            color: darkgreen;
+        }
+
+        .highlight-cell {
+            background-color: lightyellow;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Tabla A (Fija en la parte superior) -->
+    <table id="tableA">
+        <thead>
+            <tr>
+                <th>COLOR</th>
+                <th>AREA</th>
+                <th>RA1</th>
+                <th>RA4</th>
+                <th>RA6</th>
+                <th>RA7</th>
+                <th>RA9</th>
+                <th>RA12</th>
+                <th>RA13</th>
+                <th>RA18</th>
+                <th>RA14</th>
+                <th>RA15</th>
+                <th>RA16</th>
+                <th>RA17</th>
+                <th>RA19</th>
+                <th>RA20</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="row1">
+                <td>Ciencias Básicas</td>
+                <td>RA1</td>
+                <td></td>
+                <td></td>
+                <td>RA4</td>
+                <td></td>
+                <td>RA6</td>
+                <td>RA7</td>
+                <td></td>
+                <td>RA9</td>
+                <td></td>
+                <td></td>
+                <td>RA12</td>
+                <td>RA13</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>RA18</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="row2">
+                <td>Económico Administrativa</td>
+                <td>RA1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>RA14</td>
+                <td>RA15</td>
+                <td></td>
+                <td></td>
+                <td>RA18</td>
+                <td>RA19</td>
+                <td></td>
+            </tr>
+            <tr class="row3">
+                <td>Profesional Ingeniería</td>
+                <td>RA1</td>
+                <td>RA2</td>
+                <td>RA3</td>
+                <td>RA4</td>
+                <td>RA5</td>
+                <td>RA6</td>
+                <td>RA7</td>
+                <td>RA8</td>
+                <td>RA9</td>
+                <td></td>
+                <td>RA11</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>RA15</td>
+                <td>RA16</td>
+                <td>RA17</td>
+                <td>RA18</td>
+                <td>RA19</td>
+                <td></td>
+            </tr>
+            <tr class="row4">
+                <td>Profesional Tecnológica</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>RA5</td>
+                <td></td>
+                <td>RA7</td>
+                <td>RA8</td>
+                <td>RA9</td>
+                <td>RA10</td>
+                <td>RA11</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>RA15</td>
+                <td>RA16</td>
+                <td></td>
+                <td>RA18</td>
+                <td>RA19</td>
+                <td>RA20</td>
+            </tr>
+            <tr class="row5">
+                <td>Profesional Básica</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>RA8</td>
+                <td>RA9</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="row6">
+                <td>Humanidades</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>RA14</td>
+                <td>RA15</td>
+                <td>RA16</td>
+                <td>RA17</td>
+                <td></td>
+                <td>RA19</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+
+    <!-- Tabla B -->
+    <table id="tableB">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>DESCRIPCIÓN RESULTADO DE APRENDIZAJE</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-id="RA1">
+                <td>RA1</td>
+                <td>Aplica modelos matemáticos para resolver problemas de ingeniería en soluciones telemáticas, considerando restricciones técnicas y de eficiencia.</td>
+            </tr>
+            <tr data-id="RA2">
+                <td>RA2</td>
+                <td>Diseña software para entornos de nube, teniendo en cuenta escalabilidad, seguridad y eficiencia.</td>
+            </tr>
+            <tr data-id="RA3">
+                <td>RA3</td>
+                <td>Diseña sistemas distribuidos con arquitecturas telemáticas, considerando criterios de eficiencia, escalabilidad y seguridad.</td>
+            </tr>
+            <tr data-id="RA4">
+                <td>RA4</td>
+                <td>Analiza datos a gran escala utilizando experimentación adecuada para obtener conclusiones informadas en ingeniería telemática.</td>
+            </tr>
+            <!-- Agrega las demás filas de la tabla B de manera similar -->
+        <tr data-id="RA5">
+            <td>RA5</td>
+            <td>Diseña infraestructura telemática eficiente considerando los aspectos técnicos, económicos y sociales del entorno.</td>
+        </tr>
+        <tr data-id="RA6">
+            <td>RA6</td>
+            <td>Analiza problemas complejos de ingeniería telemática para proponer soluciones efectivas.</td>
+        </tr>
+        <tr data-id="RA7">
+            <td>RA7</td>
+            <td>Procesa datos para diseñar sistemas con arquitecturas de software.</td>
+        </tr>
+        <tr data-id="RA8">
+            <td>RA8</td>
+            <td>Construye sistemas informáticos para satisfacer las necesidades del entorno.</td>
+        </tr>
+        <tr data-id="RA9">
+            <td>RA9</td>
+            <td>Desarrolla algoritmos para la solución de problemas de ingeniería.</td>
+        </tr>
+        <tr data-id="RA10">
+            <td>RA10</td>
+            <td>Automatiza procesos para mejorar la eficiencia en entornos telemáticos.</td>
+        </tr>
+        <tr data-id="RA11">
+            <td>RA11</td>
+            <td>Diseña bases de datos para gestionar y organizar información en soluciones telemáticas.</td>
+        </tr>
+        <tr data-id="RA12">
+            <td>RA12</td>
+            <td>Evalúa problemas de complejidad algorítmica para optimizar soluciones en ingeniería telemática.</td>
+        </tr>
+        <tr data-id="RA13">
+            <td>RA13</td>
+            <td>Aplica técnicas matemáticas para analizar datos en el contexto de soluciones telemáticas.</td>
+        </tr>
+        <tr data-id="RA14">
+            <td>RA14</td>
+            <td>Trabaja en equipo en entornos colaborativos con habilidades interpersonales, de una manera ética.</td>
+        </tr>
+        <tr data-id="RA15">
+            <td>RA15</td>
+            <td>Aplica estrategias de autoaprendizaje continuo para la adquisición y actualización de conocimientos en el ámbito telemático.</td>
+        </tr>
+        <tr data-id="RA16">
+            <td>RA16</td>
+            <td>Ejecuta sus actuaciones con responsabilidad ética y profesional en el ámbito de la ingeniería telemática.</td>
+        </tr>
+        <tr data-id="RA17">
+            <td>RA17</td>
+            <td>Lidera equipos de gestión de proyectos en el contexto de la ingeniería telemática, promoviendo la buena comunicación y la claridad en los objetivos.</td>
+        </tr>
+        <tr data-id="RA18">
+            <td>RA18</td>
+            <td>Propone proyectos de ingeniería sustentando su viabilidad económica y técnica en el contexto de la ingeniería telemática.</td>
+        </tr>
+        <tr data-id="RA19">
+            <td>RA19</td>
+            <td>Analiza el contexto social considerando elementos de responsabilidad social en la práctica de la ingeniería telemática.</td>
+        </tr>
+        <tr data-id="RA20">
+            <td>RA20</td>
+            <td>Diseña sistemas con arquitecturas y patrones de software.</td>
+        </tr>
+
+
+        </tbody>
+    </table>
+
+    <script>
+        // Selecciona las filas de la tabla B
+        const rowsB = document.querySelectorAll("#tableB tbody tr");
+        const tableA = document.querySelector("#tableA");
+
+        rowsB.forEach(row => {
+            row.addEventListener('click', () => {
+                // Resalta la fila seleccionada
+                rowsB.forEach(r => r.classList.remove('highlight'));
+                row.classList.add('highlight');
+                
+                // Extrae el ID de la fila seleccionada
+                const selectedId = row.getAttribute("data-id");
+
+                // Busca las celdas en la tabla A y resalta las correspondientes
+                const cellsA = tableA.querySelectorAll("td");
+                cellsA.forEach(cell => {
+                    if (cell.textContent === selectedId) {
+                        cell.classList.add('highlight-cell');
+                    } else {
+                        cell.classList.remove('highlight-cell');
+                    }
+                });
+            });
+        });
+
+        // Resalta las celdas de la tabla A cuando se hace clic
+        const cellsA = tableA.querySelectorAll("td");
+        cellsA.forEach(cell => {
+            cell.addEventListener('click', () => {
+                // Resalta la columna correspondiente
+                const colIndex = cell.cellIndex;
+                const headers = tableA.querySelectorAll("th");
+                headers[colIndex].style.fontSize = "1.2em";
+                cellsA.forEach(c => {
+                    if (c.cellIndex === colIndex) {
+                        c.classList.add('highlight-cell');
+                    } else {
+                        c.classList.remove('highlight-cell');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

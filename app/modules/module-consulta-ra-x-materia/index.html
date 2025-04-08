@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relación de Resultados de Aprendizaje</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css">
+    <style>
+        .header-aplicativo {
+            background-color: #0066cc;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5em;
+        }
+        .container {
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+        .subject-selector {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .subject-selector select {
+            font-size: 1.2em;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .handsontable-container {
+            background: #fff;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .footer-aplicativo {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #0066cc;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<header class="header-aplicativo">Relación de Resultados de Aprendizaje por Materia</header>
+
+<div class="container">
+    <div class="subject-selector">
+        <select id="subjectSelect">
+            <option value="calculo">Cálculo Diferencial</option>
+            <option value="catedrafjc">Catedra FJC</option>
+            <option value="lineal">Algebra lineal</option>
+            <option value="democracia">Democracia y ciudadania</option>
+            <option value="textos1">Comprensión Textos I</option>
+        </select>
+    </div>
+    <div class="handsontable-container" id="tableContainer"></div>
+</div>
+
+<footer class="footer-aplicativo">
+    Universidad Distrital Francisco José de Caldas - Ingeniería Telemática
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
+<script>
+    // Datos para cada materia
+    const dataSets = {
+        calculo: [
+		["RA1: Aplica modelos matemáticos para resolver problemas de ingeniería en soluciones telemáticas, considerando restricciones técnicas y de eficiencia.", "Alta", "20%", "El cálculo diferencial es fundamental para modelar fenómenos técnicos y optimizar soluciones matemáticas."],
+		["RA13: Aplica técnicas matemáticas para analizar datos e interpretar resultados en sistemas telemáticos.", "Alta", "15%", "Las técnicas de cálculo son esenciales en el análisis de datos, como derivadas en tendencias o tasas."],
+		["RA9: Desarrolla algoritmos para la solución de problemas de ingeniería.", "Alta", "12%", "La derivación y el análisis matemático influyen en la creación de algoritmos eficientes."],
+		["RA12: Evalúa problemas de complejidad algorítmica y optimización en sistemas telemáticos.", "Media-Alta", "10%", "El cálculo diferencial apoya la comprensión de las relaciones de complejidad y optimización matemática."],
+  		["RA4: Analiza datos a gran escala para la toma de decisiones en ingeniería telemática.", "Media-Alta", "8%", "Los conceptos del cálculo ayudan a modelar y predecir comportamientos basados en datos."],
+  		["RA6: Analiza problemas complejos de ingeniería telemática para formular soluciones técnicas.", "Media", "7%", "Los modelos matemáticos basados en cálculo son útiles para formular soluciones iniciales."],
+  		["RA18: Propone proyectos sustentando su viabilidad económica y técnica.", "Media", "6%", "Los cálculos diferenciales son útiles para análisis técnico y estudios de viabilidad."],
+  		["RA11: Diseña bases de datos para gestionar información en sistemas telemáticos.", "Media", "5%", "Contribuye al análisis de datos relacionados con índices de eficiencia y búsqueda."],
+  		["RA7: Procesa datos para diseñar sistemas y servicios telemáticos.", "Media", "4%", "Apoya en la comprensión de datos numéricos, aunque el procesamiento en sí está más relacionado con otras áreas."],
+  		["RA5: Diseña infraestructura telemática eficiente considerando restricciones técnicas y económicas.", "Baja", "3%", "El cálculo diferencial puede contribuir al modelado inicial, pero su papel es limitado."],
+  		["RA10: Automatiza procesos para mejorar la eficiencia en sistemas telemáticos.", "Baja", "2%", "Puede ser útil en análisis matemático previo, pero es menos relevante en el diseño final de automatización."],
+  		["RA3: Diseña sistemas distribuidos para aplicaciones telemáticas.", "Baja", "2%", "La relevancia del cálculo es marginal en el diseño de sistemas distribuidos."],
+  		["RA20: Diseña sistemas con arquitecturas y patrones de software.", "Baja", "2%", "El cálculo tiene un impacto limitado, ya que el diseño se centra en arquitectura más que en matemáticas."],
+  		["RA2: Diseña software para entornos de nube aplicando principios telemáticos.", "Muy baja", "1%", "El cálculo no es esencial en el diseño de software en entornos de nube."],
+  		["RA14: Trabaja en equipo en entornos colaborativos para desarrollar soluciones telemáticas.", "Muy baja", "1%", "No guarda relación directa con habilidades colaborativas."],
+  		["RA15: Aplica estrategias de autoaprendizaje para actualizar sus competencias en telemática.", "Muy baja", "1%", "Aunque fomenta el aprendizaje lógico, su impacto es indirecto."],
+  		["RA16: Ejecuta actuaciones con responsabilidad ética en el ejercicio de la ingeniería telemática.", "Muy baja", "0%", "No guarda relación con la ética profesional."],
+  		["RA17: Lidera equipos de gestión de proyectos en el ámbito telemático.", "Muy baja", "0%", "Sin relación directa con el cálculo diferencial."],
+  		["RA19: Analiza el contexto social y económico para implementar soluciones telemáticas responsables.", "Muy baja", "0%", "No tiene relación con análisis sociales o responsabilidad social."],
+	  	["RA8: Construye sistemas informáticos para satisfacer necesidades específicas en telemática.", "Muy baja", "0%", "El cálculo no es esencial para este resultado."],
+        ],
+        catedrafjc: [
+	  	["RA19: Analiza el contexto social considerando elementos de responsabilidad social y sostenibilidad en proyectos telemáticos.", "Alta", "20%", "La cátedra introduce elementos de responsabilidad social y pensamiento crítico en el contexto universitario."],
+	  	["RA16: Ejecuta actuaciones con responsabilidad ética en el ejercicio de la ingeniería telemática.", "Alta", "15%", "Aborda principios éticos fundamentales alineados con el legado de Francisco José de Caldas."],
+	  	["RA14: Trabaja en equipo en entornos colaborativos para desarrollar soluciones telemáticas.", "Alta", "12%", "Incentiva habilidades interpersonales y el trabajo colaborativo desde el contexto organizacional."],
+	  	["RA17: Lidera equipos de gestión de proyectos en el ámbito telemático.", "Media-Alta", "10%", "Apoya habilidades de liderazgo y comunicación en proyectos al presentar el pensamiento crítico de Caldas."],
+	  	["RA15: Aplica estrategias de autoaprendizaje continuo para adaptarse a desafíos académicos y profesionales.", "Media-Alta", "8%", "Promueve la importancia del aprendizaje continuo y la adaptación al entorno académico y profesional."],
+	  	["RA18: Propone proyectos sustentando su viabilidad económica y técnica en el ámbito telemático.", "Media", "7%", "Contextualiza proyectos considerando factores sociales y organizacionales."],
+	  	["RA5: Diseña infraestructura telemática eficiente considerando factores sociales y económicos.", "Media", "6%", "Introduce una visión integral de los factores sociales y económicos en el diseño."],
+	  	["RA6: Analiza problemas complejos de ingeniería telemática desde un enfoque interdisciplinario.", "Media", "5%", "Contribuye indirectamente al análisis de problemas desde un enfoque interdisciplinario."],
+	  	["RA8: Construye sistemas informáticos para satisfacer necesidades específicas del entorno telemático.", "Media", "4%", "Relaciona las necesidades del entorno con la práctica profesional, aunque con enfoque indirecto."],
+	  	["RA1: Aplica modelos matemáticos para resolver problemas de ingeniería en soluciones telemáticas.", "Baja", "3%", "Su aporte es menor y más orientado al contexto organizacional del aprendizaje."],
+	  	["RA4: Analiza datos a gran escala para la toma de decisiones en ingeniería telemática.", "Baja", "3%", "Aporta una perspectiva contextual, aunque el análisis técnico no es el enfoque principal."],
+	  	["RA7: Procesa datos para diseñar sistemas y servicios telemáticos.", "Baja", "2%", "Contribución marginal, más orientada al entorno social y organizacional del estudiante."],
+	  	["RA11: Diseña bases de datos para gestionar información en sistemas telemáticos.", "Baja", "2%", "Relación limitada al contexto organizacional, sin impacto directo en las bases de datos."],
+	  	["RA9: Desarrolla algoritmos para la solución de problemas de ingeniería.", "Muy baja", "1%", "No se centra en el desarrollo técnico, pero fomenta el pensamiento crítico general."],
+	  	["RA13: Aplica técnicas matemáticas para analizar datos e interpretar resultados en sistemas telemáticos.", "Muy baja", "1%", "Aporte indirecto al pensamiento crítico, pero no técnico."],
+	  	["RA10: Automatiza procesos para mejorar la eficiencia en sistemas telemáticos.", "Muy baja", "1%", "Relación marginal, más enfocada en contexto que en automatización."],
+	  	["RA12: Evalúa problemas de complejidad algorítmica y optimización en sistemas telemáticos.", "Muy baja", "0%", "Sin relación directa con este resultado técnico."],
+	  	["RA2: Diseña software para entornos de nube aplicando principios telemáticos.", "Muy baja", "0%", "No guarda relación directa con el diseño técnico de software."],
+	  	["RA3: Diseña sistemas distribuidos para aplicaciones telemáticas.", "Muy baja", "0%", "Relación nula en el diseño de arquitecturas técnicas."],
+	  	["RA20: Diseña sistemas con arquitecturas y patrones de software.", "Muy baja", "0%", "Sin impacto en el diseño técnico de sistemas distribuidos o patrones de software."],	
+        ],
+        lineal: [
+	  	["RA13: Aplica técnicas matemáticas para analizar datos en el contexto de soluciones telemáticas.", "Muy alta", "20%", "Álgebra lineal es crucial para la manipulación y análisis de datos, como el uso de matrices y transformaciones."],
+	  	["RA1: Aplica modelos matemáticos para resolver problemas de ingeniería en soluciones telemáticas.", "Muy alta", "15%", "El curso proporciona herramientas esenciales para modelar sistemas y resolver problemas."],
+	  	["RA4: Analiza datos a gran escala utilizando experimentación adecuada en sistemas telemáticos.", "Alta", "12%", "Introduce conceptos como álgebra matricial, base de métodos en análisis de datos masivos."],
+	  	["RA9: Desarrolla algoritmos para la solución de problemas de ingeniería telemática.", "Alta", "10%", "Contribuye al desarrollo de algoritmos mediante la representación matricial y el cálculo eficiente."],
+	  	["RA7: Procesa datos para diseñar sistemas con arquitecturas de software telemáticas.", "Alta", "9%", "Brinda fundamentos para procesar y organizar datos, especialmente en sistemas con múltiples variables."],
+	  	["RA12: Evalúa problemas de complejidad algorítmica en el diseño de soluciones telemáticas.", "Alta", "8%", "Álgebra lineal apoya en el diseño y evaluación de algoritmos eficientes para problemas complejos."],
+	  	["RA5: Diseña infraestructura telemática eficiente considerando restricciones técnicas y económicas.", "Media-Alta", "6%", "Proporciona herramientas matemáticas útiles para diseñar y evaluar estructuras de red."],
+	  	["RA3: Diseña sistemas distribuidos con arquitecturas telemáticas optimizadas.", "Media-Alta", "5%", "El curso proporciona bases teóricas para la optimización y modelado de arquitecturas distribuidas."],
+	  	["RA8: Construye sistemas informáticos para satisfacer necesidades específicas del entorno telemático.", "Media", "4%", "Proporciona fundamentos indirectos para el diseño de sistemas mediante modelado matemático."],
+	  	["RA11: Diseña bases de datos para gestionar y organizar información en sistemas telemáticos.", "Media", "3%", "Contribuye marginalmente a la organización y representación eficiente de datos en bases de datos."],
+	  	["RA10: Automatiza procesos para mejorar la eficiencia en entornos telemáticos.", "Baja", "2%", "Relación indirecta en el uso de métodos matriciales para optimizar procesos automatizados."],
+	  	["RA2: Diseña software para entornos de nube con énfasis en algoritmos de optimización.", "Baja", "2%", "Contribución limitada al diseño de software, con impacto solo en algoritmos de optimización."],
+	  	["RA20: Diseña sistemas con arquitecturas y patrones de software para aplicaciones telemáticas.", "Baja", "1%", "Relación mínima al no abordar patrones específicos de diseño de software."],
+	  	["RA6: Analiza problemas complejos de ingeniería telemática desde una perspectiva matemática.", "Baja", "1%", "Contribución indirecta al análisis de sistemas complejos mediante herramientas matemáticas."],
+	  	["RA14: Trabaja en equipo en entornos colaborativos para soluciones telemáticas.", "Muy baja", "0%", "Sin relación directa; el curso es técnico y no aborda habilidades interpersonales."],
+	  	["RA15: Aplica estrategias de autoaprendizaje continuo para abordar desafíos académicos.", "Muy baja", "0%", "No fomenta directamente estrategias de autoaprendizaje."],
+	  	["RA16: Ejecuta sus actuaciones con responsabilidad ética en el ámbito telemático.", "Muy baja", "0%", "Sin relación directa con aspectos éticos o profesionales."],
+	  	["RA17: Lidera equipos de gestión de proyectos en el ámbito telemático.", "Muy baja", "0%", "Relación marginal; el curso no aborda directamente liderazgo o gestión de proyectos."],
+	  	["RA18: Propone proyectos sustentando su viabilidad económica y técnica en ingeniería telemática.", "Muy baja", "0%", "Relación limitada al diseño técnico de proyectos con base matemática."],
+	  	["RA19: Analiza el contexto social considerando elementos de responsabilidad social y sostenibilidad.", "Muy baja", "0%", "No aborda aspectos sociales o éticos."]
+	],
+	democracia:[
+    		["RA19: Analiza el contexto social considerando elementos de responsabilidad social en la práctica de la ingeniería telemática.", "Muy alta", "25%", "Promueve una visión crítica y responsable de los impactos sociales de las soluciones telemáticas."],
+    		["RA16: Ejecuta sus actuaciones con responsabilidad ética y profesional en el ámbito de la ingeniería telemática.", "Muy alta", "20%", "Aborda directamente valores éticos fundamentales para el ejercicio de la ingeniería."],
+    		["RA14: Trabaja en equipo en entornos colaborativos con habilidades interpersonales, de una manera ética.", "Alta", "15%", "Fomenta habilidades de colaboración y comunicación ética en equipo."],
+    		["RA17: Lidera equipos de gestión de proyectos en el contexto de la ingeniería telemática, promoviendo la buena comunicación y la claridad en los objetivos.", "Alta", "10%", "Contribuye al desarrollo de liderazgo con perspectiva ética y social."],
+    		["RA18: Propone proyectos de ingeniería sustentando su viabilidad económica y técnica en el contexto de la ingeniería telemática.", "Media", "8%", "Relación indirecta al incentivar la reflexión sobre la sostenibilidad y la responsabilidad social."],
+    		["RA15: Aplica estrategias de autoaprendizaje continuo para la adquisición y actualización de conocimientos en el ámbito telemático.", "Media", "7%", "Fomenta una actitud reflexiva y consciente hacia el aprendizaje continuo en un contexto social."],
+    		["RA5: Diseña infraestructura telemática eficiente considerando los aspectos técnicos, económicos y sociales del entorno.", "Baja", "5%", "Relación marginal al promover la consideración de impactos sociales en el diseño."],
+    		["RA6: Analiza problemas complejos de ingeniería telemática para proponer soluciones efectivas.", "Baja", "4%", "Aporte limitado al análisis técnico, pero relevante en la dimensión ética y social."],
+    		["RA13: Aplica técnicas matemáticas para analizar datos en el contexto de soluciones telemáticas.", "Muy baja", "2%", "Relación indirecta, sin conexión directa con el enfoque matemático."],
+    		["RA1: Aplica modelos matemáticos para resolver problemas de ingeniería...", "Muy baja", "2%", "Relación muy limitada al ser un enfoque técnico."],
+    		["RA8: Construye sistemas informáticos para satisfacer las necesidades del entorno.", "Muy baja", "1%", "Aporte indirecto al considerar necesidades sociales del entorno."],
+    		["RA2: Diseña software para entornos de nube, teniendo en cuenta escalabilidad, seguridad y eficiencia.", "Muy baja", "1%", "Relación marginal con la dimensión social de la solución."],
+    		["RA3: Diseña sistemas distribuidos con arquitecturas telemáticas, considerando criterios de eficiencia, escalabilidad y seguridad.", "Muy baja", "1%", "Aporte indirecto relacionado con la dimensión ética y social."],
+    		["RA9: Desarrolla algoritmos para la solución de problemas de ingeniería.", "Muy baja", "1%", "Conexión mínima al ser un aspecto técnico y matemático."],
+    		["RA7: Procesa datos para diseñar sistemas con arquitecturas de software.", "Muy baja", "0%", "Relación insignificante; el enfoque es técnico."],
+    		["RA10: Automatiza procesos para mejorar la eficiencia en entornos telemáticos.", "Muy baja", "0%", "Aporte insignificante al tratarse de un tema técnico."],
+    		["RA11: Diseña bases de datos para gestionar y organizar información en soluciones telemáticas.", "Muy baja", "0%", "Sin relación directa con el enfoque de la materia."],
+    		["RA12: Evalúa problemas de complejidad algorítmica para optimizar soluciones en ingeniería telemática.", "Muy baja", "0%", "Sin conexión significativa con los objetivos de esta asignatura."],
+    		["RA4: Analiza datos a gran escala utilizando experimentación adecuada...", "Muy baja", "0%", "No hay relación directa con los temas de ciudadanía y democracia."],
+    		["RA20: Diseña sistemas con arquitecturas y patrones de software.", "Muy baja", "0%", "Sin relación significativa; el enfoque es técnico."],
+	],
+	textos1:[
+ 		["RA14: Trabaja en equipo en entornos colaborativos con habilidades interpersonales, de una manera ética.", "Muy alta", "20%", "La habilidad de expresar ideas claras y colaborar eficazmente es esencial en contextos grupales."],
+    		["RA17: Lidera equipos de gestión de proyectos en el contexto de la ingeniería telemática, promoviendo la buena comunicación y la claridad en los objetivos.", "Muy alta", "18%", "La capacidad de redactar y comunicar objetivos claros es crucial para el liderazgo en proyectos."],
+    		["RA15: Aplica estrategias de autoaprendizaje continuo para la adquisición y actualización de conocimientos en el ámbito telemático.", "Alta", "15%", "Las habilidades de lectura crítica y análisis facilitan el autoaprendizaje continuo."],
+    		["RA16: Ejecuta sus actuaciones con responsabilidad ética y profesional en el ámbito de la ingeniería telemática.", "Alta", "12%", "La materia fomenta la comunicación responsable y profesional, lo cual refuerza el ejercicio ético."],
+    		["RA19: Analiza el contexto social considerando elementos de responsabilidad social en la práctica de la ingeniería telemática.", "Media", "8%", "La lectura y escritura crítica ayudan a interpretar contextos sociales relevantes."],
+    		["RA18: Propone proyectos de ingeniería sustentando su viabilidad económica y técnica en el contexto de la ingeniería telemática.", "Media", "7%", "Redactar propuestas y documentar proyectos se apoya en las competencias desarrolladas en esta materia."],
+    		["RA6: Analiza problemas complejos de ingeniería telemática para proponer soluciones efectivas.", "Baja", "5%", "Relación indirecta al facilitar la claridad en la comunicación de análisis técnicos."],
+    		["RA7: Procesa datos para diseñar sistemas con arquitecturas de software.", "Baja", "4%", "Ayuda en la redacción de documentación asociada a sistemas, aunque no directamente técnica."],
+    		["RA5: Diseña infraestructura telemática eficiente considerando los aspectos técnicos, económicos y sociales del entorno.", "Muy baja", "3%", "Relación marginal al comunicar consideraciones sociales en el diseño."],
+    		["RA8: Construye sistemas informáticos para satisfacer las necesidades del entorno.", "Muy baja", "3%", "Contribuye a documentar requerimientos y resultados de diseño."],
+    		["RA1: Aplica modelos matemáticos para resolver problemas de ingeniería...", "Muy baja", "2%", "Aporte limitado a la comunicación técnica de soluciones matemáticas."],
+    		["RA2: Diseña software para entornos de nube, teniendo en cuenta escalabilidad, seguridad y eficiencia.", "Muy baja", "2%", "Aporte marginal al documentar resultados y requisitos técnicos."],
+    		["RA3: Diseña sistemas distribuidos con arquitecturas telemáticas, considerando criterios de eficiencia, escalabilidad y seguridad.", "Muy baja", "2%", "Relación indirecta, útil para reportar conclusiones y avances."],
+    		["RA13: Aplica técnicas matemáticas para analizar datos en el contexto de soluciones telemáticas.", "Muy baja", "1%", "Relación limitada a la documentación y presentación de análisis matemáticos."],
+    		["RA9: Desarrolla algoritmos para la solución de problemas de ingeniería.", "Muy baja", "1%", "Conexión mínima, centrada en comunicar las soluciones."],
+    		["RA4: Analiza datos a gran escala utilizando experimentación adecuada...", "Muy baja", "1%", "Aporte indirecto al redactar resultados de análisis."],
+    		["RA10: Automatiza procesos para mejorar la eficiencia en entornos telemáticos.", "Muy baja", "1%", "Conexión insignificante con procesos técnicos."],
+    		["RA11: Diseña bases de datos para gestionar y organizar información en soluciones telemáticas.", "Muy baja", "1%", "Relación marginal en la documentación técnica."],
+    		["RA12: Evalúa problemas de complejidad algorítmica para optimizar soluciones en ingeniería telemática.", "Muy baja", "0%", "Aporte insignificante."],
+    		["RA20: Diseña sistemas con arquitecturas y patrones de software.", "Muy baja", "0%", "Sin relación directa con el enfoque técnico de este resultado."]
+	],        
+    };
+
+    // Inicialización de Handsontable
+    const container = document.getElementById('tableContainer');
+    const hot = new Handsontable(container, {
+        data: dataSets.calculo, // Carga inicial para "Cálculo Diferencial"
+        colHeaders: true,
+        rowHeaders: true,
+        manualColumnResize: true,
+        licenseKey: 'non-commercial-and-evaluation'
+    });
+
+    // Actualización dinámica al cambiar la materia
+    const subjectSelect = document.getElementById('subjectSelect');
+    subjectSelect.addEventListener('change', () => {
+        const selectedSubject = subjectSelect.value;
+        const newData = dataSets[selectedSubject] || [["Sin datos disponibles"]];
+        hot.loadData(newData);
+    });
+</script>
+
+</body>
+</html>

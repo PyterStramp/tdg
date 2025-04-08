@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Highcharts Interactive Charts</title>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+</head>
+<body>
+  <div id="mainChart" style="width: 80%; height: 400px; margin: 20px auto;"></div>
+  <div id="detailChart" style="width: 80%; height: 400px; margin: 20px auto; display: none;"></div>
+
+  <script>
+    // Datos de prueba
+    const resultados = Array.from({ length: 20 }, (_, i) => `Resultado ${i + 1}`);
+    const asignaturas = Array.from({ length: 60 }, (_, i) => `Materia ${i + 1}`);
+
+    // Generar datos simulados
+    const datos = resultados.map((resultado, resultadoIndex) => {
+      return {
+        name: resultado,
+        sumatoria: Math.floor(Math.random() * 500 + 100), // Sumatoria total de esfuerzos "Muy Alto"
+        detalle: asignaturas.map((asignatura) => {
+          return {
+            name: asignatura,
+            value: Math.random() > 0.7 ? Math.floor(Math.random() * 100) : 0 // Contribución aleatoria
+          };
+        })
+      };
+    });
+
+    // Crear gráfico principal
+    Highcharts.chart('mainChart', {
+      chart: {
+        type: 'column',
+      },
+      title: {
+        text: 'Sumatoria de Contribuciones Muy Altas'
+      },
+      xAxis: {
+        categories: resultados,
+        title: {
+          text: 'Resultados de Aprendizaje'
+        }
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: 'Sumatoria de Esfuerzos'
+        }
+      },
+      tooltip: {
+        pointFormat: '<b>{point.y}</b> esfuerzos totales'
+      },
+      series: [{
+        name: 'Sumatoria Muy Alta',
+        data: datos.map(d => d.sumatoria),
+        color: '#7cb5ec'
+      }],
+      plotOptions: {
+        column: {
+          cursor: 'pointer',
+          point: {
+            events: {
+              click: function () {
+                const resultadoIndex = this.index;
+                mostrarDetalle(resultadoIndex);
+              }
+            }
+          }
+        }
+      }
+    });
+
+    // Función para mostrar gráfico detallado
+    function mostrarDetalle(resultadoIndex) {
+      const detalleData = datos[resultadoIndex].detalle.filter(d => d.value > 0);
+
+      Highcharts.chart('detailChart', {
+        chart: {
+          type: 'bar',
+        },
+        title: {
+          text: `Contribución por Materia para ${datos[resultadoIndex].name}`
+        },
+        xAxis: {
+          categories: detalleData.map(d => d.name),
+          title: {
+            text: 'Asignaturas'
+          }
+        },
+        yAxis: {
+          min: 0,
+          title: {
+            text: 'Contribución'
+          }
+        },
+        tooltip: {
+          pointFormat: '<b>{point.y}</b> contribución'
+        },
+        series: [{
+          name: 'Contribución por Materia',
+          data: detalleData.map(d => d.value),
+          color: '#90ed7d'
+        }],
+        plotOptions: {
+          bar: {
+            dataLabels: {
+              enabled: true
+            }
+          }
+        }
+      });
+
+      document.getElementById('detailChart').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

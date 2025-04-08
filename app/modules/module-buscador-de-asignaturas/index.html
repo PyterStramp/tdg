@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda de Asignaturas</title>
+    <link rel="stylesheet" href="style2.css">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+</head>
+<body>
+    <div class="container-app">
+        <h1>Búsqueda de Asignaturas</h1>
+        <input type="text" id="searchInput" placeholder="Buscar asignatura...">
+        <div id="tablesContainer">
+            <!-- Las tablas estarán aquí -->
+        </div>
+    </div>
+
+    <script>
+        // Datos de ejemplo
+        const asignaturas = {
+            "Gerencia de Redes": [
+                { resultado: "RA5", relacion: "Muy alta", porcentaje: "20%", justificacion: "La materia es clave para el diseño..." },
+                { resultado: "RA3", relacion: "Muy alta", porcentaje: "18%", justificacion: "La gerencia de redes implica..." }
+                // Agrega más filas según sea necesario
+            ],
+            "Sistemas Distribuidos": [
+                { resultado: "RA6", relacion: "Alta", porcentaje: "12%", justificacion: "Automatiza procesos dentro de redes..." },
+                { resultado: "RA10", relacion: "Alta", porcentaje: "15%", justificacion: "Optimización de recursos en entornos distribuidos..." }
+            ]
+        };
+
+        const searchInput = document.getElementById('searchInput');
+        const tablesContainer = document.getElementById('tablesContainer');
+
+        // Función para renderizar la tabla
+        function renderTable(asignatura) {
+            const rows = asignaturas[asignatura].map(row => `
+                <tr>
+                    <td>${row.resultado}</td>
+                    <td>${row.relacion}</td>
+                    <td>${row.porcentaje}</td>
+                    <td>${row.justificacion}</td>
+                </tr>
+            `).join('');
+
+            return `
+                <h2>${asignatura}</h2>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Resultado de aprendizaje</th>
+                            <th>Relación</th>
+                            <th>Porcentaje</th>
+                            <th>Justificación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${rows}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        // Evento para la búsqueda
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase();
+            tablesContainer.innerHTML = '';
+
+            Object.keys(asignaturas).forEach(asignatura => {
+                if (asignatura.toLowerCase().includes(query)) {
+                    tablesContainer.innerHTML += renderTable(asignatura);
+                }
+            });
+
+            if (!tablesContainer.innerHTML) {
+                tablesContainer.innerHTML = '<p>No se encontraron resultados.</p>';
+            }
+        });
+
+        // Renderiza todas las tablas inicialmente
+        Object.keys(asignaturas).forEach(asignatura => {
+            tablesContainer.innerHTML += renderTable(asignatura);
+        });
+    </script>
+</body>
+</html>

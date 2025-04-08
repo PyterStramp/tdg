@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabla Interactiva de Habilidades en Ingeniería Telemática</title>
+  <style>
+    h1 {
+      color: #4CAF50;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 32px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    #tabla, #tableA {
+      width: 90%;
+      border-collapse: collapse;
+      margin: 20px;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+
+    th:hover {
+      background-color: #45a049;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .container-app {
+      overflow-x: auto;
+      max-width: 100%;
+    }
+
+    .sorting-icon {
+      margin-left: 10px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Habilidades en Ingeniería Telemática</h1>
+
+  <div class="container-app">
+    <table id="tabla">
+      <thead>
+        <tr>
+          <th onclick="sortTable(0)">Habilidad General <span id="sort-icon-0" class="sorting-icon">&#8597;</span></th>
+          <th onclick="sortTable(1)">Habilidad Específica <span id="sort-icon-1" class="sorting-icon">&#8597;</span></th>
+          <th onclick="sortTable(2)">Descripción de la Habilidad <span id="sort-icon-2" class="sorting-icon">&#8597;</span></th>
+          <th onclick="sortTable(3)">Resultados de Aprendizaje Relacionados <span id="sort-icon-3" class="sorting-icon">&#8597;</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>H01: Resolución de problemas matemáticos</td>
+          <td>Aplicación de modelos matemáticos</td>
+          <td>Capacidad para aplicar técnicas matemáticas avanzadas para resolver problemas complejos en ingeniería.</td>
+          <td>R01: Aplica modelos matemáticos para resolver problemas de ingeniería en soluciones telemáticas, considerando restricciones técnicas y de eficiencia.</td>
+        </tr>
+        <tr>
+          <td>H01: Resolución de problemas matemáticos</td>
+          <td>Aplicación de técnicas matemáticas para analizar datos</td>
+          <td>Usar herramientas matemáticas para analizar y procesar grandes volúmenes de datos en ingeniería telemática.</td>
+          <td>R13: Aplica técnicas matemáticas para analizar datos en el contexto de soluciones telemáticas.</td>
+        </tr>
+        <tr>
+          <td>H02: Diseño de software y sistemas distribuidos</td>
+          <td>Diseño de software para la nube</td>
+          <td>Crear software escalable, seguro y eficiente para entornos de nube.</td>
+          <td>R02: Diseña software para entornos de nube, teniendo en cuenta escalabilidad, seguridad y eficiencia.</td>
+        </tr>
+        <tr>
+          <td>H02: Diseño de software y sistemas distribuidos</td>
+          <td>Diseño de sistemas distribuidos</td>
+          <td>Desarrollar arquitecturas distribuidas eficientes y seguras para soluciones telemáticas.</td>
+          <td>R03: Diseña sistemas distribuidos con arquitecturas telemáticas, considerando criterios de eficiencia, escalabilidad y seguridad.</td>
+        </tr>
+        <tr>
+          <td>H03: Análisis de datos y experimentación</td>
+          <td>Análisis de grandes volúmenes de datos</td>
+          <td>Analizar datos a gran escala usando experimentación adecuada para obtener conclusiones informadas.</td>
+          <td>R04: Analiza datos a gran escala utilizando experimentación adecuada para obtener conclusiones informadas en ingeniería telemática.</td>
+        </tr>
+        <tr>
+          <td>H03: Análisis de datos y experimentación</td>
+          <td>Automatización de procesos</td>
+          <td>Mejorar la eficiencia mediante la automatización de procesos en entornos telemáticos.</td>
+          <td>R10: Automatiza procesos para mejorar la eficiencia en entornos telemáticos.</td>
+        </tr>
+        <tr>
+          <td>H03: Análisis de datos y experimentación</td>
+          <td>Evaluación de complejidad algorítmica</td>
+          <td>Evaluar y optimizar la complejidad algorítmica para soluciones más eficientes.</td>
+          <td>R12: Evalúa problemas de complejidad algorítmica para optimizar soluciones en ingeniería telemática.</td>
+        </tr>
+        <tr>
+          <td>H04: Desarrollo de soluciones informáticas</td>
+          <td>Desarrollo de algoritmos</td>
+          <td>Crear algoritmos eficientes para resolver problemas complejos de ingeniería telemática.</td>
+          <td>R09: Desarrolla algoritmos para la solución de problemas de ingeniería.</td>
+        </tr>
+        <tr>
+          <td>H04: Desarrollo de soluciones informáticas</td>
+          <td>Construcción de sistemas informáticos</td>
+          <td>Construir sistemas informáticos para satisfacer necesidades en entornos telemáticos.</td>
+          <td>R08: Construye sistemas informáticos para satisfacer las necesidades del entorno.</td>
+        </tr>
+        <tr>
+          <td>H04: Desarrollo de soluciones informáticas</td>
+          <td>Diseño de bases de datos</td>
+          <td>Diseñar bases de datos para gestionar y organizar información eficientemente en entornos telemáticos.</td>
+          <td>R11: Diseña bases de datos para gestionar y organizar información en soluciones telemáticas.</td>
+        </tr>
+        <tr>
+          <td>H05: Diseño de infraestructura telemática</td>
+          <td>Diseño de infraestructura telemática eficiente</td>
+          <td>Diseñar soluciones eficientes de infraestructura telemática considerando factores técnicos y sociales.</td>
+          <td>R05: Diseña infraestructura telemática eficiente considerando los aspectos técnicos, económicos y sociales del entorno.</td>
+        </tr>
+        <tr>
+          <td>H06: Análisis y solución de problemas complejos</td>
+          <td>Análisis de problemas complejos de ingeniería</td>
+          <td>Capacidad para analizar problemas complejos en ingeniería telemática y desarrollar soluciones efectivas.</td>
+          <td>R06: Analiza problemas complejos de ingeniería telemática para proponer soluciones efectivas.</td>
+        </tr>
+        <tr>
+          <td>H07: Diseño de software y sistemas distribuidos</td>
+          <td>Procesamiento de datos para diseño de software</td>
+          <td>Procesar y organizar datos para diseñar sistemas informáticos eficaces y eficientes.</td>
+          <td>R07: Procesa datos para diseñar sistemas con arquitecturas de software.</td>
+        </tr>
+        <tr>
+          <td>H08: Trabajo en equipo y liderazgo</td>
+          <td>Trabajo en equipo en entornos colaborativos</td>
+          <td>Trabajar de manera efectiva en equipos multidisciplinarios, aplicando habilidades interpersonales.</td>
+          <td>R14: Trabaja en equipo en entornos colaborativos con habilidades interpersonales, de una manera ética.</td>
+        </tr>
+        <tr>
+          <td>H08: Trabajo en equipo y liderazgo</td>
+          <td>Liderazgo en gestión de proyectos</td>
+          <td>Dirigir equipos en proyectos de ingeniería telemática, promoviendo la comunicación y claridad en los objetivos.</td>
+          <td>R17: Lidera equipos de gestión de proyectos en el contexto de la ingeniería telemática, promoviendo la buena comunicación y la claridad en los objetivos.</td>
+        </tr>
+        <tr>
+          <td>H09: Autoaprendizaje y actualización continua</td>
+          <td>Autoaprendizaje continuo</td>
+          <td>Desarrollar habilidades para autoaprender y mantenerse actualizado con nuevas tecnologías y metodologías.</td>
+          <td>R15: Aplica estrategias de autoaprendizaje continuo para la adquisición y actualización de conocimientos en el ámbito telemático.</td>
+        </tr>
+        <tr>
+          <td>H10: Ética y responsabilidad profesional</td>
+          <td>Responsabilidad ética y profesional</td>
+          <td>Actuar con ética, responsabilidad y respeto hacia las normas y principios de la ingeniería telemática.</td>
+          <td>R16: Ejecuta sus actuaciones con responsabilidad ética y profesional en el ámbito de la ingeniería telemática.</td>
+        </tr>
+
+        <tr>
+          <td>H10: Ética y responsabilidad profesional</td>
+          <td>Conciencia social y ambiental</td>
+          <td>Considerar los aspectos sociales y de responsabilidad en la práctica de la ingeniería telemática.</td>
+          <td>R19: Analiza el contexto social considerando elementos de responsabilidad social en la práctica de la ingeniería telemática.</td>
+        </tr>
+
+
+        <tr>
+          <td>H11: Gestión de proyectos y viabilidad</td>
+          <td>Propuesta de proyectos viables</td>
+          <td>Evaluar la viabilidad económica y técnica de proyectos de ingeniería telemática</td>
+          <td>R18: Propone proyectos de ingeniería sustentando su viabilidad económica y técnica en el contexto de la ingeniería telemática.</td>
+        </tr>
+
+        <tr>
+          <td>H12: Diseño de sistemas con patrones de software</td>
+          <td>Diseño de sistemas con arquitecturas y patrones</td>
+          <td>Crear soluciones de software utilizando patrones de diseño adecuados para optimizar la estructura del sistema</td>
+          <td>R20: Diseña sistemas con arquitecturas y patrones de software.</td>
+        </tr>
+
+
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    let sortDirection = [false, false, false, false]; // False means descending, true means ascending.
+
+    function sortTable(columnIndex) {
+      const table = document.getElementById("tabla");
+      const rows = Array.from(table.rows).slice(1); // Exclude header row
+
+      // Toggle sort direction
+      sortDirection[columnIndex] = !sortDirection[columnIndex];
+
+      rows.sort((rowA, rowB) => {
+        const cellA = rowA.cells[columnIndex].innerText;
+        const cellB = rowB.cells[columnIndex].innerText;
+
+        // Ascending
+        if (sortDirection[columnIndex]) {
+          return cellA.localeCompare(cellB);
+        }
+
+        // Descending
+        return cellB.localeCompare(cellA);
+      });
+
+      // Reorder rows
+      rows.forEach(row => table.appendChild(row));
+
+      // Update sorting icon
+      updateSortingIcons(columnIndex);
+    }
+
+    function updateSortingIcons(columnIndex) {
+      const icons = document.querySelectorAll(".sorting-icon");
+      icons.forEach(icon => icon.innerHTML = "&#8597;"); // Reset all icons
+
+      const icon = document.getElementById(`sort-icon-${columnIndex}`);
+      icon.innerHTML = sortDirection[columnIndex] ? "&#8593;" : "&#8595;"; // Up or down arrow
+    }
+  </script>
+</body>
+</html>

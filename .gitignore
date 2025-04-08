@@ -1,0 +1,28 @@
+# Archivos de configuración con datos sensibles
+app/Config/config.php
+app/Config/database.php
+
+# Directorio de logs
+logs/
+*.log
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
+
+# Dependencias instaladas
+vendor/
+node_modules/
+
+# Archivos de entorno
+.env
+
+# Archivos de caché y sesión
+*.cache
+*.session
+
+# Archivos específicos de IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace

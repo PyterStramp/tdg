@@ -1,0 +1,68 @@
+/* Estilos básicos */
+
+/* Estilo para las tablas */
+.table-container {
+    width: 100%;
+    margin: 20px 0;
+    overflow-x: auto;
+}
+
+/* Tabla A */
+#tableA {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#tableA th, #tableA td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+#tableA th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#tableA .color {
+    width: 20px;
+}
+
+#tableA tr:hover {
+    background-color: #f5f5f5;
+}
+
+#tableA .highlight {
+    font-size: 18px;
+    background-color: #DFF0D8;
+}
+
+/* Tabla B */
+#tableB {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#tableB th, #tableB td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+#tableB th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#tableB tr:hover {
+    background-color: #f5f5f5;
+}
+
+#tableB .highlight-ra {
+    background-color: #DFF0D8;
+    color: #4CAF50;
+}

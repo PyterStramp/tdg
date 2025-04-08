@@ -1,0 +1,310 @@
+/* Estilos para gestión de usuarios */
+
+/* Encabezados de contenido */
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.content-header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: var(--dark-color);
+}
+
+.content-header .actions {
+    text-align: right;
+}
+
+/* Tarjetas */
+.card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px var(--shadow-color);
+    margin-bottom: 25px;
+}
+
+.card-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-header h2 {
+    margin: 0;
+    font-size: 18px;
+    color: var(--dark-color);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* Formularios */
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -10px;
+    margin-left: -10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+@media (max-width: 768px) {
+    .col-md-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.form-text {
+    display: block;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.text-muted {
+    color: var(--gray-color);
+}
+
+.required {
+    color: var(--danger-color);
+}
+
+/* Checkboxes personalizados */
+.role-checkboxes {
+    margin: 10px 0;
+}
+
+.custom-control {
+    position: relative;
+    display: block;
+    min-height: 1.5rem;
+    padding-left: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.custom-control-input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.custom-control-label {
+    position: relative;
+    margin-bottom: 0;
+    vertical-align: top;
+    cursor: pointer;
+}
+
+.custom-control-label::before {
+    position: absolute;
+    top: 0.25rem;
+    left: -1.5rem;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    content: "";
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.custom-control-label::after {
+    position: absolute;
+    top: 0.25rem;
+    left: -1.5rem;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    content: "";
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50%;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+}
+
+/* Switch personalizado */
+.custom-switch {
+    padding-left: 3.5rem;
+}
+
+.custom-switch .custom-control-label::before {
+    left: -3.5rem;
+    width: 2.5rem;
+    border-radius: 1rem;
+}
+
+.custom-switch .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: var(--success-color);
+}
+
+.custom-switch .custom-control-label::after {
+    top: 0.375rem;
+    left: -3.4rem;
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: var(--gray-color);
+    border-radius: 0.5rem;
+    transition: transform 0.15s, background-color 0.15s;
+}
+
+.custom-switch .custom-control-input:checked ~ .custom-control-label::after {
+    background-color: #fff;
+    transform: translateX(1.5rem);
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.6em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    margin-right: 4px;
+    margin-bottom: 4px;
+}
+
+.badge-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.badge-secondary {
+    background-color: var(--gray-color);
+    color: white;
+}
+
+.badge-success {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.badge-danger {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+/* Tabla */
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: middle;
+    border-top: 1px solid var(--border-color);
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid var(--border-color);
+    background-color: var(--light-color);
+    font-weight: 600;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.table .actions {
+    white-space: nowrap;
+    text-align: center;
+}
+
+.btn-sm {
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 3px;
+    margin-right: 4px;
+}
+
+/* Panel de información de usuario */
+.user-info-panel {
+    background-color: var(--light-color);
+    border-radius: 4px;
+    padding: 15px;
+    margin: 20px 0;
+    border-left: 4px solid var(--info-color);
+}
+
+.info-row {
+    margin-bottom: 8px;
+}
+
+.info-label {
+    font-weight: 600;
+    display: inline-block;
+    width: 150px;
+}
+
+.info-value {
+    color: var(--dark-color);
+}
+
+/* Mensajes de datos vacíos */
+.empty-data {
+    text-align: center;
+    padding: 30px;
+    color: var(--gray-color);
+}
+
+/* Botones de acción del formulario */
+.form-actions {
+    margin-top: 30px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+    text-align: center;
+}
+
+.form-actions .btn {
+    min-width: 150px;
+    margin: 0 10px;
+}
