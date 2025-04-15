@@ -23,6 +23,19 @@ if (!file_exists(CONFIG_PATH . '/database.php')) {
     die('Error: Archivo de configuración de base de datos no encontrado en ' . CONFIG_PATH . '/database.php');
 }
 
+// Verificar phpMailer
+$phpMailerFiles = [
+    ROOT_PATH . '/vendor/PHPMailer/src/SMTP.php',
+    ROOT_PATH . '/vendor/PHPMailer/src/PHPMailer.php',
+    ROOT_PATH . '/vendor/PHPMailer/src/Exception.php'
+];
+
+foreach ($phpMailerFiles as $phpMailerFile) {
+    if (!file_exists($phpMailerFile)) {
+        die('Error: Archivo de PHPMailer no encontrado ' . $phpMailerFile);
+    }
+}
+
 // Cargar configuración
 require_once CONFIG_PATH . '/config.php';
 require_once CONFIG_PATH . '/database.php';
