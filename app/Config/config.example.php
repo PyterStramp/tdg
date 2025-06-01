@@ -46,6 +46,12 @@ define('MAIL_SMTP_SECURE', ''); // Protocolo de seguridad (tls o ssl)
 // Configuración de debug
 define('DEBUG_MODE', true); // Cambiar a false en producción
 
+//Si se usa ngrok, utilizar el archivo de config a exportar:
+
+if (file_exists(CONFIG_PATH . '/ngrok.php')) {
+    require_once CONFIG_PATH . '/ngrok.php';
+}
+
 // Mostrar o no errores según modo de depuración
 if (DEBUG_MODE) {
     error_reporting(E_ALL);

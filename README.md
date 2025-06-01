@@ -107,10 +107,10 @@ Para habilitar las funcionalidades de correo electrónico:
 
 ## Configuración de la base de datos
 
-Para habilitar las funcionalidades de correo electrónico:
+Para habilitar las funcionalidades de tu base de datos:
 
 1. Edita `app/Config/database.php`
-2. Configura los parámetros SMTP:
+2. Configura los parámetros:
    ```php
    // Parámetros de conexión
     $db_host = 'tu_host';
@@ -118,6 +118,10 @@ Para habilitar las funcionalidades de correo electrónico:
     $db_user = 'usuario';
     $db_pass = 'contrasenia';
     ```
+
+## Integración con ngrok
+
+Si piensas utilizar ngrok, el sistema ya viene cargado por default cuando detecta una url propia de ngrok, forzando peticiones HTTP a HTTPS, porque cuando se usa ngrok, se crea un túnel HTTPS pero el sistema sigue generando URLs con HTTP, causando problemas de contenido mixto (mixed content) donde el navegador bloquea recursos HTTP en una página HTTPS.
 
 ## Seguridad
 

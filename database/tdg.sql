@@ -46,7 +46,7 @@ CREATE TABLE `modules` (
 --
 
 INSERT INTO `modules` (`id`, `name`, `slug`, `description`, `icon`, `directory_path`, `entry_file`, `active`, `order_index`, `created_at`, `updated_at`) VALUES
-(4, 'Consulta RA X Materia', 'consulta-ra-x-materia', 'Primer módulo serio', 'fas fa-search', 'module-consulta-ra-x-materia', 'index.html', 1, 2, '2025-04-05 02:31:39', '2025-04-05 02:31:39'),
+(4, 'Consulta RA X Materia', 'consulta-ra-x-materia', 'Módulo que trata sobre los resultados de aprendizaje por materia', 'fas fa-search', 'module-consulta-ra-x-materia', 'index.html', 1, 2, '2025-04-05 02:31:39', '2025-04-05 02:31:39'),
 (6, 'Buscador de asignaturas', 'buscador-de-asignaturas', 'El módulo tratará sobre buscar asignaturas', 'fas fa-book', 'module-buscador-de-asignaturas', 'index.html', 1, 2, '2025-04-07 16:02:43', '2025-04-07 16:02:43'),
 (7, 'Analisis contribucion espacios A RA', 'analisis-contribucion-espacios-a-ra', 'El módulo presenta gráficas sobre la sumatoria de contribución de materias', 'far fa-chart-bar', 'module-analisis-contribucion-espacios-a-ra', 'index.html', 1, 2, '2025-04-07 16:05:16', '2025-04-07 16:05:16'),
 (8, 'Habilidades RA', 'habilidades-ra', 'El módulo trata sobre las habilidades y competencias', 'fas fa-lightbulb', 'module-habilidades-ra', 'index.html', 1, 3, '2025-04-07 16:06:30', '2025-04-07 16:06:30'),
@@ -235,7 +235,6 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `code`, `full_name`,
 (1, 'admin', '$2y$10$kR51mxf5g.njX/bjQjq65.XxKKFQLjLeTNzkWu/DqTuH8cE3th.Ra', 'admin@example.com', 'admincode123', 'Administrador', 1, '2025-03-27 23:54:37', '2025-04-08 00:51:26'),
 (2, '20221578001', '$2y$10$OLjCNPnvRGGwiucuNvT6wubYoFPP69uGLLU0nnYA70gCf/5rWlWYi', 'xetipe7196@oronny.com', '957a684a5f603920', 'Luis López Lozada', 1, '2025-03-29 03:02:56', '2025-03-30 01:39:28'),
 (4, 'twitter', '$2y$10$aHQSMrKxH3dt4jkz7vus3eHlAmTdnzlxMHWxPFaYKAYI/XrCaTssm', 'twitter@twitter.com', '0aed9ab342cf2f88', 'Franco', 0, '2025-03-30 00:06:55', NULL),
-(6, 'srianov', '$2y$10$qeaYor.taEU2eXYc5L7Tc.RDKqh0WtBq5vdUQSzL6Qh9yZXtefydW', 'srianov@udistrital.edu.co', 'd3c8a293e21d8964', 'Santiago Riano', 1, '2025-03-30 02:26:47', '2025-03-30 02:27:55'),
 (7, 'ali', '$2y$10$tdVq4QX/q1Y0.yg0y7BrGuD4XBjZLIoy9/h0j01J/C2uVthCn3NVS', 'azeu9mry40@knmcadibav.com', '572c87233bfe939d', 'Ali baba baboso', 1, '2025-03-30 04:27:46', NULL),
 (8, 'testuser1', '$2y$10$tbOLehKMFyEOVVeIQHhTm.yDQhgSzIih.26MyuV4/2Kecbq2ASIg2', 'mapiwas737@exclussi.com', 'a3ddd7a78f4a5aaa', 'User test', 1, '2025-04-03 23:11:09', '2025-04-08 01:02:51');
 

@@ -2,6 +2,10 @@
 app/Config/config.php
 app/Config/database.php
 
+# Archivo de ngrok
+
+ngrok.exe
+
 # Directorio de logs
 logs/
 *.log
